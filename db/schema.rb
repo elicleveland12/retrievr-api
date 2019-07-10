@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_210210) do
 
   create_table "tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.boolean "active"
+    t.uuid "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
