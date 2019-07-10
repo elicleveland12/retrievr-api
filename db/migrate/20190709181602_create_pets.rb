@@ -8,6 +8,7 @@ class CreatePets < ActiveRecord::Migration[5.2]
       t.boolean :missing
       t.integer :poster_id
       t.integer :user_id
+      t.integer :tag_id
 
       t.timestamps
     end

@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_210210) do
     t.boolean "missing"
     t.integer "poster_id"
     t.integer "user_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
