@@ -6,7 +6,7 @@ class PetSerializer < ActiveModel::Serializer
   has_many :tags
 
   def imageUrl
-    self.object.photo.service_url
+    byebug
+    self.object.image.service_url
   end
 end
-p
