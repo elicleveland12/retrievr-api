@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2019_07_10_210210) do
     t.string "name"
     t.string "breed"
     t.string "instagram"
-    t.string "birthdate"
-    t.boolean "missing"
+    t.datetime "birthdate"
+    t.boolean "missing", default: false
     t.integer "poster_id"
     t.integer "user_id"
     t.integer "tag_id"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_210210) do
   end
 
   create_table "tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.boolean "active"
+    t.boolean "active", default: false
     t.uuid "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
