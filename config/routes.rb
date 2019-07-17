@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :users
       resources :posters
       resources :tags
+      post '/login', to: 'auth#login'
+      get '/login', to: 'auth#auto_login'
     end
   end
 end
