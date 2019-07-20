@@ -12,6 +12,7 @@ class Api::V1::PetsController < ApplicationController
 
   def create
     @pet = Pet.create(pet_params)
+    @pet.image.attach(io: image_io, filename: 'My Pet')
     render json: @pet, status: :created
   end
 
@@ -33,6 +34,12 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def pet_params
-    params.permit(:id, :name, :birthdate, :breed, :missing, :image, :user_id, :instagram, :posters_id)
+    params.permit(:name, :birthdate, :breed, :missing, :image, :user_id, :instagram, :posters_id)
   end
+
+  def image_io
+    decoded_image = Base64.decode64(params[:image])
+    StringIO.new(decoded_image)
+  end
+  
 end
