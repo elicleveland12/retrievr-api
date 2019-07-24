@@ -12,7 +12,7 @@ class Api::V1::PetsController < ApplicationController
 
   def create
     @pet = Pet.create(name: params[:name],breed: params[:breed], instagram: params[:instagram], birthdate: params[:birthdate], user_id: params[:user_id])
-    @pet.image.attach(io: image_io, filename: image_nam)
+    @pet.image.attach(io: image_io, filename: image_name)
     render json: @pet, status: :created
   end
 
