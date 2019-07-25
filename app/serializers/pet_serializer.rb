@@ -6,6 +6,10 @@ class PetSerializer < ActiveModel::Serializer
   has_many :tags
 
   def imageUrl
-    self.object.image.service_url
+    if self.object.image.attached?
+      self.object.image.service_url
+    else
+      nil
+    end
   end
 end

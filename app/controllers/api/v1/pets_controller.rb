@@ -1,5 +1,5 @@
 class Api::V1::PetsController < ApplicationController
-  before_action :find_pet, only: [:update, :show]
+  before_action :find_pet, only: [:update, :show. :destroy]
 
   def index
     @pets = Pet.all
@@ -7,7 +7,7 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def show
-    render json: @pet 
+    render json: @pet
   end
 
   def create
@@ -22,7 +22,6 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def destroy
-    @pet = Pet.find(params[:id])
     @pet.destroy
     render json: @pet, status: :deleted
   end
@@ -45,5 +44,5 @@ class Api::V1::PetsController < ApplicationController
   def image_name
     params[:file_name]
   end
-  
+
 end
