@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       get '/login', to: 'auth#auto_login'
     end
   end
+  get '/missing-posters', to: 'web#index'
+  get '/profile/:id', to: 'web#show'
 end
