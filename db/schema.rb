@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_181734) do
+ActiveRecord::Schema.define(version: 2019_08_05_193602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_181734) do
     t.string "name"
     t.string "breed"
     t.string "instagram"
-    t.datetime "birthdate"
+    t.string "birthdate"
     t.boolean "missing", default: false
     t.integer "poster_id"
     t.integer "user_id"
