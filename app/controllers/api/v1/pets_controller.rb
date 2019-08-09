@@ -11,13 +11,16 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def create
-    @pet = Pet.create(name: params[:name], breed: params[:breed], instagram: params[:instagram], birthdate: params[:birthdate], user_id: params[:user_id])
+    @pet = Pet.create(pet_params)
     @pet.image.attach(io: image_io, filename: image_name)
     render json: @pet, status: :created
   end
 
   def update
     @pet.update(pet_params)
+    if params[:image]
+      @pet.image.attach(io: image_io, filename: image_name)
+    end
     render json: @pet, status: :OK
   end
 
@@ -33,7 +36,7 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def pet_params
-    params.permit(:name, :birthdate, :breed, :missing, :image, :user_id, :instagram, :posters_id, :file_name)
+    params.permit(:name, :birthdate, :breed, :missing, :user_id, :instagram, :posters_id)
   end
 
   def image_io
