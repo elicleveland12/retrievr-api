@@ -35,7 +35,7 @@ class Api::V1::DevicesController < ApplicationController
   private
 
   def device_params
-    params.permit(:token, :token, :platform)
+    params.permit(:token, :user_id, :platform)
   end
 
   def find_device
