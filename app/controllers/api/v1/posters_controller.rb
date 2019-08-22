@@ -34,6 +34,6 @@ class Api::V1::PostersController < ApplicationController
   end
 
   def poster_params
-    params.permit(:lat, :long, :pet_descriptions, :pet_id, :poster_name, :poster_phone)
+    params.permit(:lat, :long, :pet_descriptions, :pet_id, :poster_name, :poster_phone, :found_lat, :found_long, :comment, :missing_time)
   end
 end
