@@ -3,7 +3,7 @@ class Api::V1::TagsController < ApplicationController
   before_action :find_tag, only: [:update, :show]
 
   def index
-    @tags = tag.all
+    @tags = Tag.all
     render json: @tags
   end
 
@@ -12,7 +12,7 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def create
-    @tag = tag.create(tag_params)
+    @tag = Tag.create(tag_params)
     render json: @tag, status: :created
   end
 
@@ -22,7 +22,7 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def destroy
-    @tag = tag.find(params[:id])
+    @tag = Tag.find(params[:id])
     @tag.destroy
     render json: @tag, status: :deleted
   end
@@ -30,7 +30,7 @@ class Api::V1::TagsController < ApplicationController
   private
 
   def find_tag
-    @tag = tag.find(params[:id])
+    @tag = Tag.find(params[:id])
   end
 
   def tag_params
