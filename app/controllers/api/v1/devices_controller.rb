@@ -1,19 +1,18 @@
 class Api::V1::DevicesController < ApplicationController
 
-  before_action :find_device, only: [:update]
+  before_action :find_device, only: [:update, :show, :destroy]
 
   def index
-    @devices = device.all
+    @devices = Device.all
     render json: @devices
   end
 
   def show
-    @device = device.find(params[:id])
     render json: @device, status: :OK
   end
 
   def create
-    @device = device.create(device_params)
+    @device = Device.create(device_params)
     render json: @device, status: :created
   end
 
@@ -27,7 +26,6 @@ class Api::V1::DevicesController < ApplicationController
   end
 
   def destroy
-    @device = device.find(params[:id])
     @device.destroy
     render json: @device, status: :deleted
   end
@@ -39,6 +37,6 @@ class Api::V1::DevicesController < ApplicationController
   end
 
   def find_device
-    @device = device.find(params[:id])
+    @device = Device.find(params[:id])
   end
 end

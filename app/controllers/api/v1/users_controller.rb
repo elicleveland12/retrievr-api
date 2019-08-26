@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
 
-  before_action :find_user, only: [:update]
+  before_action :find_user, only: [:update, :destroy, :show]
 
   def index
     @users = User.all
@@ -8,7 +8,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     render json: @user, status: :OK
   end
 
@@ -27,7 +26,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     render json: @user, status: :deleted
   end

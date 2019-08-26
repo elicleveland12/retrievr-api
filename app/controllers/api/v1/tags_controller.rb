@@ -1,6 +1,6 @@
 class Api::V1::TagsController < ApplicationController
 
-  before_action :find_tag, only: [:update, :show]
+  before_action :find_tag, only: [:update, :show, :destroy]
 
   def index
     @tags = Tag.all
@@ -22,7 +22,6 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def destroy
-    @tag = Tag.find(params[:id])
     @tag.destroy
     render json: @tag, status: :deleted
   end
