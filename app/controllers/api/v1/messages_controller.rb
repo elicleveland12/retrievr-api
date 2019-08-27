@@ -32,6 +32,6 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def message_params
-    params.permit(:message, :user_id)
+    params.permit(:message, :poster_id)
   end
 end
