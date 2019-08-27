@@ -11,7 +11,7 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def create
-    @message = message.create(message_params)
+    @message = Message.create(message_params)
     render json: @message, status: :created
   end
 
