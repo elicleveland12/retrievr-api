@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_08_27_173423) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pets", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "pets", force: :cascade do |t|
     t.string "name"
     t.string "breed"
     t.string "instagram"
@@ -63,13 +63,12 @@ ActiveRecord::Schema.define(version: 2019_08_27_173423) do
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "imagePath"
   end
 
   create_table "posters", force: :cascade do |t|
     t.string "lat"
     t.string "long"
-    t.uuid "pet_id"
+    t.integer "pet_id"
     t.string "pet_description"
     t.string "poster_name"
     t.string "poster_phone"
@@ -85,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_08_27_173423) do
 
   create_table "tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.boolean "active", default: false
-    t.uuid "pet_id"
+    t.integer "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
