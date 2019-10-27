@@ -1,6 +1,6 @@
 class PetSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :name, :breed, :instagram, :missing, :imageUrl, :birthdate
+  attributes :id, :name, :breed, :instagram, :missing, :imageUrl, :birthdate, :found
   belongs_to :user
   has_many :posters
   has_many :tags
