@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_10_27_223216) do
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "found"
+    t.boolean "found", default: false
   end
 
   create_table "posters", force: :cascade do |t|
@@ -100,8 +100,6 @@ ActiveRecord::Schema.define(version: 2019_10_27_223216) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "finder_radius"
-    t.boolean "email_confirmed", default: false
-    t.string "confirm_token"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
