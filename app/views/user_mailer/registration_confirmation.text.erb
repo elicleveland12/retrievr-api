@@ -1,0 +1,8 @@
+Hi <%= @user.name %>,
+
+Thanks for registering for Retrievr! To confirm your registration click the URL below.
+
+<%= confirm_email_api_v1_user_url(@user.confirm_token) %>
+
+Best Regards,
+Retrievr

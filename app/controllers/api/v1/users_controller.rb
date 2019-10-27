@@ -12,8 +12,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    render json: @user, status: :created
+    @user = User.new(user_params)
+    if @user.save
+        UserMailer.registration_confirmation(@user).deliver
+        render json: @user, status: :created
+      else
+        render json: { errors: @user.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   def update
@@ -28,6 +33,16 @@ class Api::V1::UsersController < ApplicationController
   def destroy
     @user.destroy
     render json: @user, status: :deleted
+  end
+
+  def confirm_email
+    @user = User.find_by_confirm_token(params[:id])
+    if @user
+      @user.email_activate
+      render json: @user, status: :OK
+    else
+      render json: { errors: @user.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   private
