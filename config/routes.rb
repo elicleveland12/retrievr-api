@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pets
       resources :users do
-        member do 
+        member do
           get :confirm_email
         end
       end
@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   end
   get '/missing-posters', to: 'web#index'
   get '/profile/:id', to: 'web#show'
+  get '/home', to: 'home#index'
+  get '/support', to: 'support#index'
 end
