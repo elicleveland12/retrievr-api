@@ -1,5 +1,4 @@
 class Api::V1::TagsController < ApplicationController
-
   before_action :find_tag, only: [:update, :show, :destroy]
 
   def index

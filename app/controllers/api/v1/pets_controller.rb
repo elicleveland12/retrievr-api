@@ -1,5 +1,6 @@
 class Api::V1::PetsController < ApplicationController
   before_action :find_pet, only: [:update, :show, :destroy]
+  before_action :authorized
 
   def index
     @pets = Pet.all

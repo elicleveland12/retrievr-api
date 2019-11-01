@@ -1,5 +1,6 @@
 class Api::V1::MessagesController < ApplicationController
     before_action :find_message, only: [:update, :show, :destroy]
+    before_action :authorized
 
   def index
     @messages = Message.all
