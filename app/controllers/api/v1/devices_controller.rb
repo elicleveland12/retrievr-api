@@ -1,6 +1,6 @@
 class Api::V1::DevicesController < ApplicationController
-
   before_action :find_device, only: [:update, :show, :destroy]
+  before_action :authorized
 
   def index
     @devices = Device.all

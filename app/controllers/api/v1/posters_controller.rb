@@ -1,5 +1,6 @@
 class Api::V1::PostersController < ApplicationController
   before_action :find_poster, only: [:update, :show]
+  before_action :authorized, only: [:update, :destroy]
 
   def index
     @posters = Poster.all
