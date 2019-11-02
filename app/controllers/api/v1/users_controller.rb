@@ -39,9 +39,9 @@ class Api::V1::UsersController < ApplicationController
     @user = User.find_by_confirm_token(params[:id])
     if @user
       @user.email_activate
-      render json: @user, status: :OK
+      redirect_to "/verified"
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessible_entity
+      render json: { errors: "Verification already has been done" }, status: :unprocessible_entity
     end
   end
 

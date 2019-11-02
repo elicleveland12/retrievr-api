@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   get '/profile/:id', to: 'web#show'
   get '/home', to: 'home#index'
   get '/support', to: 'support#index'
+  get '/verified', to: 'confirm#index'
 end
