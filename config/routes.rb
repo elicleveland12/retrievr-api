@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       end
       resources :posters
       resources :tags
+      get '/tags/:id', to: 'tags#show'
       resources :messages
       resources :devices
       post '/login', to: 'auth#login'

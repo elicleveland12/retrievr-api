@@ -8,7 +8,11 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def show
-    render json: @tag
+    if @tag.pet_id
+      redirect_to "http://retrievr-api-v2.herokuapp.com/profile/#{@tag.pet_id}"
+    else
+      redirect_to "http://retrievr-api-v2.herokuapp.com/missing-posters"
+    end
   end
 
   def create
