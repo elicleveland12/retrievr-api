@@ -8,10 +8,14 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def show
-    if @tag.pet_id
-      redirect_to "http://retrievr-api-v2.herokuapp.com/profile/#{@tag.pet_id}"
+    if params[:origin] == "internal"
+      render json: @tag
     else
-      redirect_to "http://retrievr-api-v2.herokuapp.com/missing-posters"
+      if @tag.pet_id
+        redirect_to "http://retrievr-api-v2.herokuapp.com/profile/#{@tag.pet_id}"
+      else
+        redirect_to "http://retrievr-api-v2.herokuapp.com/missing-posters"
+      end
     end
   end
 
@@ -37,6 +41,6 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def tag_params
-    params.permit(:active, :pet_id)
+    params.permit(:active, :pet_id, :origin)
   end
 end

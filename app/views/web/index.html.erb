@@ -5,7 +5,7 @@
       background-repeat: no-repeat, repeat;
       background-position: center;
       background-size: cover;
-      font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+      font-family: timeburner;
     }
     .poster-container {
       text-align: center;
@@ -19,6 +19,16 @@
       display: inline-block;
       width: 600px;
       height: 820px;
+    }
+    .poster-top {
+      background-image: url("https://i.pinimg.com/originals/b2/34/4f/b2344f505822df9ff64c7641c55c4159.jpg");
+      background-repeat: no-repeat, repeat;
+      background-position: center;
+      margin-bottom: 30px;
+      margin-left: 50px;
+      display: inline-block;
+      width: 600px;
+      height: 460px;
     }
     .top-label {
       display: inline;
@@ -34,6 +44,20 @@
   </style>
 </head>
 <body>
+    <div class="poster-container">
+      <div class="poster-top">
+        <h1 style="text-align: center; font-size: 60px; color: #00b894;">Download Retrievr</h1>
+        <p style="color: #00b894; font-size: 19px; margin-top: -20px;">Download the Retrievr app to help pet owners recover their lost pets</p>
+        <div class="store-div-mobile">
+        <div>
+            <a href="https://apps.apple.com/app/id1479709561"><img src="https://www.hatterasrealty.com/sites/default/files/uploads/apple-app-store-icon.png" height="120" alt="app store"/></a>
+          </div>
+          <div style="margin-top: 10px;">
+            <img src="https://miro.medium.com/max/5250/1*OIIv4FEjJQMqh-zEPhtlYA.png" height="120" alt="play store"/>
+          </div>
+        </div>
+      </div>
+    </div>
   <% if @posters.length < 1 %>
     <div class="poster-container">
       <div class="poster">
