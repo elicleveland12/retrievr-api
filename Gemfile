@@ -6,6 +6,9 @@ ruby '2.6.1'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'valid_email2'
 gem "aws-sdk-s3"
+gem 'rolify'
+gem 'devise'
+gem 'authority'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
