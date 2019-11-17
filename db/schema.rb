@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_235110) do
+ActiveRecord::Schema.define(version: 2019_11_17_204558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,32 @@ ActiveRecord::Schema.define(version: 2019_11_12_235110) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "breeders", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "breeds"
+    t.string "litters_to_date"
+    t.boolean "verified", default: false
+    t.string "champ_bloodlines"
+    t.integer "breeder_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "devices", force: :cascade do |t|
     t.integer "user_id"
     t.string "token"
     t.string "platform"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "litters", force: :cascade do |t|
+    t.string "bitch"
+    t.string "stud"
+    t.string "breed"
+    t.string "due_date"
+    t.integer "breeder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,6 +86,17 @@ ActiveRecord::Schema.define(version: 2019_11_12_235110) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "found", default: false
+    t.boolean "sold", default: false
+    t.boolean "adopted", default: false
+    t.string "species"
+    t.boolean "fixed", default: false
+    t.string "price"
+    t.string "health"
+    t.string "color"
+    t.string "sex"
+    t.string "number"
+    t.integer "litter_id"
+    t.integer "shelter_id"
   end
 
   create_table "posters", force: :cascade do |t|
@@ -83,6 +116,14 @@ ActiveRecord::Schema.define(version: 2019_11_12_235110) do
     t.integer "message_id"
     t.string "reward"
     t.boolean "status", default: true
+  end
+
+  create_table "shelters", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "donations"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

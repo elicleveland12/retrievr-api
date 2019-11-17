@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'home#index'
   namespace :api do
     namespace :v1 do
       resources :pets
@@ -10,6 +11,9 @@ Rails.application.routes.draw do
       end
       resources :posters
       resources :tags
+      resources :breeders
+      resources :litters
+      resources :shelters
       get '/tags/:id', to: 'tags#show'
       resources :messages
       resources :devices
