@@ -8,7 +8,7 @@ class Api::V1::DevicesController < ApplicationController
   end
 
   def show
-    render json: @device, status: :OK
+    render json: @device, status: :ok
   end
 
   def create

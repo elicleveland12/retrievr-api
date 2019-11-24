@@ -17,7 +17,7 @@ class Api::V1::BreedersController < ApplicationController
 
   def update
     @breeder.update(breeder_params)
-    render json: @breeder, status: :OK
+    render json: @breeder, status: :ok
   end
 
   def destroy

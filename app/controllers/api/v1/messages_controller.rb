@@ -18,7 +18,7 @@ class Api::V1::MessagesController < ApplicationController
 
   def update
     @message.update(message_params)
-    render json: @message, status: :OK
+    render json: @message, status: :ok
   end
 
   def destroy

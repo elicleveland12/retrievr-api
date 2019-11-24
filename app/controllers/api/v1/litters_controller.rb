@@ -17,7 +17,7 @@ class Api::V1::LittersController < ApplicationController
 
   def update
     @litter.update(litter_params)
-    render json: @litter, status: :OK
+    render json: @litter, status: :ok
   end
 
   def destroy

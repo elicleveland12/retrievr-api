@@ -17,7 +17,7 @@ class Api::V1::SheltersController < ApplicationController
 
   def update
     @shelter.update(shelter_params)
-    render json: @shelter, status: :OK
+    render json: @shelter, status: :ok
   end
 
   def destroy

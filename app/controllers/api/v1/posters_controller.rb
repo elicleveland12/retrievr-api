@@ -18,7 +18,7 @@ class Api::V1::PostersController < ApplicationController
 
   def update
     @poster.update(poster_params)
-    render json: @poster, status: :OK
+    render json: @poster, status: :ok
   end
 
   def destroy

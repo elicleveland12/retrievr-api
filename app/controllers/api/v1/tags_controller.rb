@@ -22,7 +22,7 @@ class Api::V1::TagsController < ApplicationController
 
   def update
     @tag.update(tag_params)
-    render json: @tag, status: :OK
+    render json: @tag, status: :ok
   end
 
   def destroy
