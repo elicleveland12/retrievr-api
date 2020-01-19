@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_17_204558) do
+ActiveRecord::Schema.define(version: 2020_01_19_192007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,11 +92,17 @@ ActiveRecord::Schema.define(version: 2019_11_17_204558) do
     t.boolean "fixed", default: false
     t.string "price"
     t.string "health"
-    t.string "color"
     t.string "sex"
     t.string "number"
     t.integer "litter_id"
-    t.integer "shelter_id"
+    t.string "breed_primary"
+    t.string "breed_secondary"
+    t.boolean "mixed"
+    t.boolean "unknown"
+    t.string "color_primary"
+    t.string "color_secondary"
+    t.string "color_tertiary"
+    t.string "size"
   end
 
   create_table "posters", force: :cascade do |t|
@@ -116,14 +122,6 @@ ActiveRecord::Schema.define(version: 2019_11_17_204558) do
     t.integer "message_id"
     t.string "reward"
     t.boolean "status", default: true
-  end
-
-  create_table "shelters", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.string "donations"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
