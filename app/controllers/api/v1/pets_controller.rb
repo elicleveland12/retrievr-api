@@ -37,7 +37,7 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def pet_params
-    params.permit(:name, :birthdate, :breed, :missing, :user_id, :instagram, :posters_id, :found, :sold, :adopted, :species, :fixed, :price, :health, :color, :sex, :number, :litter_id, :shelter_id)
+    params.permit(:name, :birthdate, :breed, :missing, :user_id, :instagram, :posters_id, :found, :sold, :adopted, :species, :fixed, :price, :health, :sex, :number, :litter_id, :breed_primary, :breed_secondary, :mixed, :unknown, :color_primary, :color_secondary, :color_tertiary, :size)
   end
 
   def image_io
