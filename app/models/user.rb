@@ -6,6 +6,7 @@ class User < ApplicationRecord
     validates :name, :email, :password, presence: true
     validates :password, length: { in: 6..20 }
     validates :email, uniqueness: true
+    belongs_to :referrer, :class_name => 'User', foreign_key: 'referred_id', optional: true
     before_create :confirmation_token
 
     def email_activate
