@@ -4,16 +4,19 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :pets
+      resources :park_visits
+      resources :parks
+      resources :scans
       resources :users do
         member do
           get :confirm_email
         end
       end
+      get 'nearby_users', to: 'users#nearby_users'
+      get 'set_user_coords', to: 'users#set_user_coords'
+      get 'nearby_posters', to: 'posters#nearby_posters'
       resources :posters
       resources :tags
-      resources :breeders
-      resources :litters
-      resources :shelters
       get '/tags/:id', to: 'tags#show'
       resources :messages
       resources :devices

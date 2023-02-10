@@ -1,6 +1,6 @@
 class Api::V1::PostersController < ApplicationController
   before_action :find_poster, only: [:update, :show]
-  before_action :authorized, only: [:update, :destroy]
+  before_action :authorized, only: [:update, :destroy, :nearby_posters]
 
   def index
     @posters = Poster.all
@@ -27,6 +27,14 @@ class Api::V1::PostersController < ApplicationController
     render json: @poster, status: :deleted
   end
 
+  def nearby_posters
+    current_lat = params[:latitude]
+    current_lon = params[:longitude]
+
+    @posters = Poster.near([current_lat, current_lon], 200, :order => "distance")
+    render json: @posters
+  end
+
   private
 
   def find_poster
@@ -34,6 +42,6 @@ class Api::V1::PostersController < ApplicationController
   end
 
   def poster_params
-    params.permit(:lat, :long, :pet_description, :pet_id, :poster_name, :poster_phone, :found_lat, :found_long, :comment, :missing_time, :additional_info, :message_id, :reward, :status)
+    params.permit(:latitude, :longitude, :address, :pet_description, :pet_id, :poster_name, :poster_phone, :found_lat, :found_long, :comment, :missing_time, :additional_info, :message_id, :reward, :status, :returned, :returned_state, :returned_comment, :returned_timestamp)
   end
 end

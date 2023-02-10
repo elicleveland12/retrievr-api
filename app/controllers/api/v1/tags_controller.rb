@@ -37,6 +37,6 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def tag_params
-    params.permit(:active, :pet_id)
+    params.permit(:active, :pet_id, :park_id, :tag_type)
   end
 end

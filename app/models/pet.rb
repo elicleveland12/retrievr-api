@@ -5,4 +5,5 @@ class Pet < ApplicationRecord
     belongs_to :shelter, optional: true
     has_many :posters
     has_many :tags
+    has_many :park_visits
 end

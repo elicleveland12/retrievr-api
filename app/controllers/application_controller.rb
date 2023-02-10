@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::API
+  include ActiveStorage::SetCurrent
   def encode_token(payload)
-    JWT.encode(payload, ENV['jwt_key'])
+    JWT.encode payload, ENV["jwt_key"]
   end
 
-  def decode_token
+  def decoded_token
     begin
-      JWT.decode(auth_headers, ENV['jwt_key'])
+      JWT.decode auth_headers, nil, false
     rescue
       nil
     end
@@ -16,8 +17,12 @@ class ApplicationController < ActionController::API
   end
 
   def curr_user
-    user_id = decode_token[0]["user_id"]
-    User.find(user_id)
+    begin
+      user_id = decoded_token[0]["user_id"]
+      User.find(user_id)
+    rescue
+      nil
+    end
   end
 
   def logged_in

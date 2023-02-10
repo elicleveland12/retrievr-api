@@ -1,6 +1,6 @@
 class Api::V1::PetsController < ApplicationController
   before_action :find_pet, only: [:update, :show, :destroy]
-  before_action :authorized
+  before_action :authorized, only: [:create, :update, :destroy]
 
   def index
     @pets = Pet.all
@@ -22,7 +22,7 @@ class Api::V1::PetsController < ApplicationController
     if params[:image]
       @pet.image.attach(io: image_io, filename: image_name)
     end
-    render json: @pet, status: :OK
+    render json: @pet, status: :ok
   end
 
   def destroy
@@ -37,7 +37,7 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def pet_params
-    params.permit(:name, :birthdate, :breed, :missing, :user_id, :instagram, :posters_id, :found, :sold, :adopted, :species, :fixed, :price, :health, :sex, :number, :litter_id, :breed_primary, :breed_secondary, :mixed, :unknown, :color_primary, :color_secondary, :color_tertiary, :size)
+    params.permit(:id, :name, :birthdate, :missing, :user_id, :instagram, :posters_id, :found, :species, :sex, :breed_primary, :breed_secondary, :color_primary, :color_secondary, :color_tertiary, :temperment, :energy_level, :description, :intelligence, :protectiveness, :sharing, :height, :weight)
   end
 
   def image_io
@@ -46,7 +46,7 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def image_name
-    params[:file_name]
+    params[:name] + "_userId:" + params[:user_id]
   end
 
 end
