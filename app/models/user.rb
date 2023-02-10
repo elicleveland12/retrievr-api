@@ -2,6 +2,8 @@ class User < ApplicationRecord
     has_secure_password
     has_many :pets
     has_many :devices
+    has_many :messages
+    has_many :scans
     validates :email, 'valid_email_2/email': { message: "is not a valid email" }
     validates :name, :email, presence: true
     validates_presence_of :password, :if => :password_required?
@@ -9,6 +11,8 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
     belongs_to :referrer, :class_name => 'User', foreign_key: 'referral_id', optional: true
     before_create :confirmation_token
+    geocoded_by :location
+    after_validation :geocode
 
     def email_activate
         self.email_confirmed = true

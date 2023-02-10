@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  latitude: 1.5
+  longitude: 1.5
+  address: MyString
+  name: MyString
+  description: MyText
+  hours_sunday: MyString
+  hours_monday: MyString
+  hours_tuesday: MyString
+  hours_wednesday: MyString
+  hours_thursday: MyString
+  hours_friday: MyString
+  hours_saturday: MyString
+
+two:
+  latitude: 1.5
+  longitude: 1.5
+  address: MyString
+  name: MyString
+  description: MyText
+  hours_sunday: MyString
+  hours_monday: MyString
+  hours_tuesday: MyString
+  hours_wednesday: MyString
+  hours_thursday: MyString
+  hours_friday: MyString
+  hours_saturday: MyString

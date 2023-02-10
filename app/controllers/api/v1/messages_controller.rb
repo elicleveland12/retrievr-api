@@ -1,6 +1,6 @@
 class Api::V1::MessagesController < ApplicationController
     before_action :find_message, only: [:update, :show, :destroy]
-    before_action :authorized
+    
 
   def index
     @messages = Message.all
@@ -33,6 +33,6 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def message_params
-    params.permit(:message, :poster_id)
+    params.permit(:message, :poster_id, :user_id)
   end
 end

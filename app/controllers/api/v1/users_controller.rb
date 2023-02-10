@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: [:update, :destroy, :show]
-  before_action :authorized, only: [:index, :show, :update, :destroy]
+  before_action :authorized, only: [:show, :update, :destroy, :nearby_users, :set_user_coords]
 
   def index
     @users = User.all
@@ -45,10 +45,29 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def nearby_users
+    current_lat = params[:latitude].to_f
+    current_lon = params[:longitude].to_f
+
+    @users = User.near([current_lat, current_lon], :finder_radius)
+    render json: @users
+  end
+
+  def set_user_coords
+    @users = User.all
+    @users.each { |e|
+      loc = JSON.parse(e.location)
+      location_params = { :latitude => loc['latitude'], :longitude => loc['longitude'] }
+      puts location_params
+      e.update(location_params)
+    }
+    render json: { message: "Ya did it, kid." }, status: :ok
+  end
+
   private
 
   def user_params
-    params.permit(:name, :email, :password, :phone, :location, :finder_radius, :country, :referral_id)
+    params.permit(:id, :name, :email, :password, :phone, :location, :finder_radius, :country, :referral_id, :latitude, :longitude)
   end
 
   def find_user
