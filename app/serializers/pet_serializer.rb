@@ -8,7 +8,7 @@ class PetSerializer < ActiveModel::Serializer
 
   def imageUrl
     if self.object.image.attached?
-      self.object.image.service_url
+      url_for(self.object.image)
     else
       nil
     end

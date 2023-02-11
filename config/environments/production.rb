@@ -91,6 +91,10 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.active_record.legacy_connection_handling = false
+
+  Rails.application.routes.default_url_options[:host] = 'retrievr-api-v2.herokuapp.com'
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
