@@ -14,7 +14,10 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  host = ENV["DEFAULT_URL_HOST"] || "#{ENV["APP_NAME"]}.herokuapp.com"
+  host = ENV["DEFAULT_URL_HOST"] || "#{ENV["APP_NAME"]}.herokuapp.com" 
+  protocol = config.force_ssl ? "https" : "http"
+
+  config.action_controller.default_url_options = { host: host, protocol: protocol }
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
