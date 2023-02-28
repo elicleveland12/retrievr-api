@@ -10,7 +10,7 @@ class Api::V1::ScansController < ApplicationController
 
   def index
     @scans = ScanReducer.apply(params)
-    @scans = @scans.uniq { |scan| scan.tag_id }
+    @scans = @scans.order(count: :desc)
     render json: @scans
   end
 
@@ -19,12 +19,14 @@ class Api::V1::ScansController < ApplicationController
   end
 
   def create
-    @scan = Scan.new(scan_params)
-    if @scan.save
-        render json: @scan, status: :created
-      else
-        render json: { errors: @scan.errors.full_messages }, status: :unprocessible_entity
-    end
+    @scan = Scan.find_by(tag_id: params[:tag_id], user_id: params[:user_id])
+    if @scan 
+      @scan.update(count: @scan.count + 1)
+    else 
+      @scan = Scan.new(scan_params)
+      @scan.count = 1
+      @scan.save 
+    end 
   end
 
   def update

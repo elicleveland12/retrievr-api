@@ -6,12 +6,20 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
   
-amazon:
+# amazon:
+#   service: S3
+#   access_key_id: <%= ENV['access_key_id'] %>
+#   secret_access_key: <%= ENV['secret_access_key'] %>
+#   region: <%= ENV['region'] %>
+#   bucket: <%= ENV['bucket'] %>
+
+digitalocean:
   service: S3
-  access_key_id: <%= ENV['access_key_id'] %>
-  secret_access_key: <%= ENV['secret_access_key'] %>
-  region: <%= ENV['region'] %>
-  bucket: <%= ENV['bucket'] %>
+  endpoint: https://retrievr.sfo3.digitaloceanspaces.com
+  access_key_id: <%= Rails.application.credentials.dig(:digitalocean, access_key) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:digitalocean, secret_key) %>
+  bucket: retrievr
+  region: sfo3
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

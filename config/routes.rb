@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pets
       resources :park_visits
-      resources :parks
       resources :scans
       resources :users do
         member do

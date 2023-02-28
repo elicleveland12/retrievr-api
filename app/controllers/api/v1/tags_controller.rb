@@ -8,11 +8,7 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def show
-    if @tag.pet_id
-      redirect_to "http://retrievr-api-v2.herokuapp.com/profile/#{@tag.pet_id}"
-    else
-      redirect_to "http://retrievr-api-v2.herokuapp.com/missing-posters"
-    end
+    render json: @tag, status: :ok
   end
 
   def create
@@ -37,6 +33,6 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def tag_params
-    params.permit(:active, :pet_id, :park_id, :tag_type)
+    params.permit(:id, :active, :pet_id, :tag_type)
   end
 end

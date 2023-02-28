@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_161703) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_22_031200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -60,30 +60,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_161703) do
   end
 
   create_table "park_visits", force: :cascade do |t|
-    t.integer "park_id"
+    t.string "park_id"
     t.string "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "count"
-  end
-
-  create_table "parks", force: :cascade do |t|
-    t.float "latitude"
-    t.float "longitude"
-    t.string "address"
-    t.string "name"
-    t.text "description"
-    t.string "hours_sunday"
-    t.string "hours_monday"
-    t.string "hours_tuesday"
-    t.string "hours_wednesday"
-    t.string "hours_thursday"
-    t.string "hours_friday"
-    t.string "hours_saturday"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "tag_id"
-    t.string "icon"
   end
 
   create_table "pets", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -146,12 +127,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_161703) do
     t.integer "count"
   end
 
-  create_table "tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "tags", id: :string, force: :cascade do |t|
     t.boolean "active", default: false
     t.string "pet_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.integer "park_id"
     t.string "tag_type"
   end
 

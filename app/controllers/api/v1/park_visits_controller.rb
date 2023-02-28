@@ -12,8 +12,16 @@ class Api::V1::ParkVisitsController < ApplicationController
   end
 
   def create
-    @parkVisit = ParkVisit.new(park_visit_params)
-    if @parkVisit.save
+    @parkVisit = ParkVisit.find_by(park_id: params[:park_id])
+    if @parkVisit 
+      @parkVisit.update(count: @parkVisit.count + 1)
+    else 
+      @parkVisit = ParkVisit.new(park_visit_params)
+      @parkVisit.count = 1
+      @parkVisit.save 
+    end 
+
+    if @parkVisit.save || @parkVisit.update 
         render json: @parkVisit, status: :created
       else
         render json: { errors: @parkVisit.errors.full_messages }, status: :unprocessible_entity
