@@ -16,8 +16,8 @@ local:
 digitalocean:
   service: S3
   endpoint: https://retrievr.sfo3.digitaloceanspaces.com
-  access_key_id: <%= Rails.application.credentials.digitalocean.access_key %>
-  secret_access_key: <%= Rails.application.credentials.digitalocean.secret_key %>
+  access_key_id: <%= ENV['do_access_key'] %>
+  secret_access_key: <%= ENV['do_secret_key'] %>
   bucket: retrievr
   region: sfo3
 
