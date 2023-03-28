@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       resources :devices
       post '/login', to: 'auth#login'
       get '/login', to: 'auth#auto_login'
+      post '/send_reset_password_token', to: 'auth#send_reset_password_token'
+      post '/reset_password', to: 'auth#reset_password'
     end
   end
   get '/missing-posters', to: 'web#index'
