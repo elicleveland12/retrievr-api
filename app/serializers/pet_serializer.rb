@@ -25,7 +25,7 @@ class PetSerializer < ActiveModel::Serializer
     colors = {}
     colors[:color_primary] = self.object.color_primary
     colors[:color_secondary] = self.object.color_secondary
-    colors[:color_teritary] = self.object.color_tertiary
+    colors[:color_tertiary] = self.object.color_tertiary
     colors
   end
 
