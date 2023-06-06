@@ -1,6 +1,6 @@
 class Api::V1::ScansController < ApplicationController
   before_action :find_scan, only: [:update, :destroy, :show]
-  before_action :authorized, only: [:show, :update, :destroy]
+  before_action :authorized, only: [:create, :show, :update, :destroy]
 
   ScanReducer = Rack::Reducer.new(
     Scan.all,
@@ -20,13 +20,20 @@ class Api::V1::ScansController < ApplicationController
 
   def create
     @scan = Scan.find_by(tag_id: params[:tag_id], user_id: params[:user_id])
-    if @scan 
-      @scan.update(count: @scan.count + 1)
+
+    if @scan
+      @scan.increment!(:count)
     else 
       @scan = Scan.new(scan_params)
       @scan.count = 1
       @scan.save 
     end 
+
+    if @scan.save || @scan.update
+        render json: @scan, status: :created
+      else
+        render json: { errors: @scan.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   def update

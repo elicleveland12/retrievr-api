@@ -6,4 +6,5 @@ class Pet < ApplicationRecord
     has_many :posters
     has_many :tags
     has_many :park_visits
+    has_many :scans, through: :tags
 end

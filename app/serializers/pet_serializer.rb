@@ -1,10 +1,15 @@
 class PetSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :name, :instagram, :missing, :imageUrl, :birthdate, :found, :species, :sex, :breeds, :colors, :qualities, :description, :height, :weight
+  attributes :id, :name, :instagram, :missing, :imageUrl, :birthdate, :found, :species, :sex, :breeds, :colors, :qualities, :description, :height, :weight, :inPark, :sorted_park_visits, :total_scans, :activeParkId
   belongs_to :user
   has_many :posters
   has_many :tags
   has_many :park_visits
+  has_many :scans, through: :tags
+
+  def sorted_park_visits
+    self.object.park_visits.order(is_active: :asc)
+  end
 
   def imageUrl
     if self.object.image.attached?
@@ -12,6 +17,32 @@ class PetSerializer < ActiveModel::Serializer
     else
       nil
     end
+  end
+
+  def total_scans
+    total_scans = 0
+    self.object.scans.each do |scan|
+      total_scans += scan.count.to_i if scan.count.present?
+    end
+    total_scans
+  end
+
+  def inPark
+    inPark = false
+    inParkObject = self.object.park_visits.where(is_active: true)
+    if inParkObject.length > 0
+      inPark = true
+    end
+    inPark
+  end
+
+  def activeParkId
+    activeParkId = nil
+    inParkObject = self.object.park_visits.where(is_active: true)
+    if inParkObject.length > 0
+      activeParkId = inParkObject[0].park_id
+    end
+    activeParkId
   end
 
   def breeds

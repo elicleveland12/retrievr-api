@@ -64,6 +64,10 @@ class Api::V1::UsersController < ApplicationController
     render json: { message: "Ya did it, kid." }, status: :ok
   end
 
+  def ping
+    render json: { message: "API status: normal" }, status: :ok
+  end 
+
   private
 
   def user_params
