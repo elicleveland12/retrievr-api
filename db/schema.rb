@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_22_224949) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_161703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_224949) do
   end
 
   create_table "devices", force: :cascade do |t|
-    t.integer "user_id"
+    t.uuid "user_id"
     t.string "token"
     t.string "platform"
     t.datetime "created_at", precision: nil, null: false
@@ -54,31 +54,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_224949) do
   create_table "messages", force: :cascade do |t|
     t.string "message"
     t.integer "poster_id"
+    t.uuid "user_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "user_id"
   end
 
   create_table "park_visits", force: :cascade do |t|
     t.string "park_id"
-    t.string "pet_id"
+    t.integer "pet_id"
+    t.integer "count"
+    t.datetime "time_in", precision: nil
+    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "count"
-    t.datetime "time_in"
-    t.boolean "is_active"
   end
 
-  create_table "pets", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "pets", force: :cascade do |t|
     t.string "name"
-    t.string "instagram"
     t.string "birthdate"
     t.boolean "missing", default: false
     t.integer "poster_id"
-    t.string "user_id"
-    t.integer "tag_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.uuid "user_id"
+    t.uuid "tag_id"
     t.boolean "found", default: false
     t.string "species"
     t.string "sex"
@@ -87,25 +84,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_224949) do
     t.string "color_primary"
     t.string "color_secondary"
     t.string "color_tertiary"
+    t.text "description"
     t.integer "temperment"
     t.integer "energy_level"
-    t.text "description"
     t.integer "intelligence"
     t.integer "protectiveness"
     t.integer "sharing"
     t.integer "height"
     t.integer "weight"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "posters", force: :cascade do |t|
     t.float "latitude"
     t.float "longitude"
-    t.string "pet_id"
+    t.integer "pet_id"
     t.string "pet_description"
     t.string "poster_name"
     t.string "poster_phone"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
     t.string "found_lat"
     t.string "found_long"
     t.string "comment"
@@ -119,22 +116,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_224949) do
     t.string "returned_comment"
     t.string "returned_timestamp"
     t.string "address"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "scans", force: :cascade do |t|
-    t.string "user_id"
-    t.string "tag_id"
+    t.uuid "user_id"
+    t.uuid "tag_id"
+    t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "count"
   end
 
-  create_table "tags", id: :string, force: :cascade do |t|
+  create_table "tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.boolean "active", default: false
-    t.string "pet_id"
+    t.integer "pet_id"
+    t.string "tag_type"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "tag_type"
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -143,8 +142,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_224949) do
     t.string "password_digest"
     t.string "phone"
     t.string "location"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
     t.integer "finder_radius"
     t.boolean "email_confirmed", default: false
     t.string "confirm_token"
@@ -153,6 +150,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_224949) do
     t.float "latitude"
     t.float "longitude"
     t.integer "reset_password_token"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -3,7 +3,6 @@
 one:
   name: MyString
   breed: MyString
-  instagram: MyString
   birthate: MyString
   missing: false
   found_lat: MyString
@@ -14,7 +13,6 @@ one:
 two:
   name: MyString
   breed: MyString
-  instagram: MyString
   birthate: MyString
   missing: false
   found_lat: MyString

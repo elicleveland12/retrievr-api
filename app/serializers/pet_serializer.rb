@@ -1,6 +1,5 @@
 class PetSerializer < ActiveModel::Serializer
-  include Rails.application.routes.url_helpers
-  attributes :id, :name, :instagram, :missing, :imageUrl, :birthdate, :found, :species, :sex, :breeds, :colors, :qualities, :description, :height, :weight, :inPark, :sorted_park_visits, :total_scans, :activeParkId
+  attributes :id, :name, :missing, :imageUrl, :birthdate, :found, :species, :sex, :breeds, :colors, :qualities, :description, :height, :weight, :inPark, :sorted_park_visits, :total_scans, :activeParkId
   belongs_to :user
   has_many :posters
   has_many :tags
@@ -9,14 +8,6 @@ class PetSerializer < ActiveModel::Serializer
 
   def sorted_park_visits
     self.object.park_visits.order(is_active: :asc)
-  end
-
-  def imageUrl
-    if self.object.image.attached?
-      url_for(self.object.image)
-    else
-      nil
-    end
   end
 
   def total_scans

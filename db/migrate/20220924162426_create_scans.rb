@@ -1,8 +1,9 @@
 class CreateScans < ActiveRecord::Migration[6.0]
   def change
     create_table :scans do |t|
-      t.string :user_id
-      t.string :tag_id
+      t.uuid :user_id
+      t.uuid :tag_id
+      t.integer :count
 
       t.timestamps
     end
