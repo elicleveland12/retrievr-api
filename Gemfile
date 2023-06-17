@@ -26,6 +26,8 @@ gem 'jwt'
 gem 'geocoder'
 gem 'pry', '~> 0.13.1'
 
+gem "debug", require: false
+
 gem "image_processing", ">= 1.2"
 
 gem 'rack-reducer', require: 'rack/reducer'

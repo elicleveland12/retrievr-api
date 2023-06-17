@@ -8,7 +8,7 @@
 
 
 User.create(name: "Greg", email: "123@test.com", password: "123", phone: "1234567890", location: "New York")
-Pet.create(name: 'Margot', breed: "Australian Shephard", instagram: "abc.com", birthdate: "01/05/2019", user_id: 1, missing: false, color_primary: "Tricolor")
+Pet.create(name: 'Margot', breed: "Australian Shephard", birthdate: "01/05/2019", user_id: 1, missing: false, color_primary: "Tricolor")
 
 
 
