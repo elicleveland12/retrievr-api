@@ -30,6 +30,11 @@ class Api::V1::DevicesController < ApplicationController
     render json: @device, status: :deleted
   end
 
+  def get_user_devices
+    @devices = Device.where(user_id: params[:user_id])
+    render json: @devices, status: :ok
+  end
+
   private
 
   def device_params
