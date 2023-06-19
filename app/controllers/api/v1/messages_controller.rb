@@ -26,6 +26,11 @@ class Api::V1::MessagesController < ApplicationController
     render json: @message, status: :deleted
   end
 
+  def get_poster_messages
+    @messages = Message.where(poster_id: params[:poster_id])
+    render json: @messages, status: :ok
+  end
+
   private
 
   def find_message
