@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       get 'set_user_coords', to: 'users#set_user_coords'
       get 'ping', to: 'users#ping'
       get 'nearby_posters', to: 'posters#nearby_posters'
+      get 'get_poster_messages', to: 'messages#get_poster_messages'
+      get 'get_user_devices', to: 'devices#get_user_devices'
       get 'top_dogs', to: 'park_visits#top_dogs'
       get 'active_in_park', to: 'park_visits#active_in_park'
       post 'check_out_of_park', to: 'park_visits#check_out_of_park'
