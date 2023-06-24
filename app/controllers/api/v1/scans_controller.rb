@@ -19,6 +19,7 @@ class Api::V1::ScansController < ApplicationController
   end
 
   def create
+    @tag = Tag.find(params[:tag_id])
     @scan = Scan.find_by(tag_id: params[:tag_id], user_id: params[:user_id])
 
     if @scan
@@ -30,7 +31,7 @@ class Api::V1::ScansController < ApplicationController
     end 
 
     if @scan.save || @scan.update
-        render json: @scan, status: :created
+        render json: { scan: @scan, tag: @tag }, status: :created
       else
         render json: { errors: @scan.errors.full_messages }, status: :unprocessible_entity
     end
