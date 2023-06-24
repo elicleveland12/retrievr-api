@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_24_151429) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_24_152435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -75,7 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_151429) do
     t.boolean "missing", default: false
     t.integer "poster_id"
     t.uuid "user_id"
-    t.uuid "tag_id"
+    t.string "tag_id"
     t.boolean "found", default: false
     t.string "species"
     t.string "sex"
@@ -122,7 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_151429) do
 
   create_table "scans", force: :cascade do |t|
     t.uuid "user_id"
-    t.uuid "tag_id"
+    t.string "tag_id"
     t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
