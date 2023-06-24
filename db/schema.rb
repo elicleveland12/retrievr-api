@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_24_145225) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_24_151429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -128,13 +128,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_145225) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "tags", id: :string, force: :cascade do |t|
     t.boolean "active", default: false
     t.integer "pet_id"
     t.string "tag_type"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "nfc_id"
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
