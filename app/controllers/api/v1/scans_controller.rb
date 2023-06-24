@@ -33,7 +33,7 @@ class Api::V1::ScansController < ApplicationController
     end 
 
     if @scan.save || @scan.update
-        render json: { scan: @scan, tag: @tag, notifyDevices: @devices }, status: :created
+        render json: { scan: @scan, tag: @tag, notifyDevices: @devices, pet: @pet }, status: :created
       else
         render json: { errors: @scan.errors.full_messages }, status: :unprocessible_entity
     end
