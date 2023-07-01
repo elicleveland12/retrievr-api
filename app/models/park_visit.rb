@@ -9,10 +9,9 @@ class ParkVisit < ApplicationRecord
     @activeParkVisits.each do |visit|
       if (Time.current - visit.time_in) > 2.hours
         pet = Pet.find(visit.pet_id)
-        user = User.find(pet.user_id)
-        device = Device.find_by(user_id: user.id)
+        device = Device.find_by(user_id: pet.user_id)
         title = "Still Playing?"
-        body = ""
+        body = "Your pet has been checked in at the park for over 2 hours."
         notifData = {
           notificationType: "PARK_TIMEOUT",
           parkVisitId: visit.id,
